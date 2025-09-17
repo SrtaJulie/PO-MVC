@@ -5,27 +5,31 @@ import java.util.List;
 
 public class Model {
     private Integer value; // la donnée principale
-    private List<ModelListener> listeners; // la liste des observateurs
+    private final List<ModelListener> listeners; // la liste des observateurs
 
-    public Model() {
-        this.value = 0;
+    public Model(final int newValue) {
+        this.value = newValue;
         this.listeners = new ArrayList<>();
     }
 
-    public Integer getValue() {
+    public Model() {
+        this(10);
+    }
+
+    public int getValue() {
         return value;
     }
 
-    public void setValue(Integer newValue) {
+    public void setValue(final int newValue) {
         this.value = newValue;
         notifyListeners(); // important : prévenir les observateurs du changement
     }
 
-    public void addModelListener(ModelListener listener) {
+    public void addModelListener(final ModelListener listener) {
         listeners.add(listener);
     }
 
-    public void removeModelListener(ModelListener listener) {
+    public void removeModelListener(final ModelListener listener) {
         listeners.remove(listener);
     }
 
